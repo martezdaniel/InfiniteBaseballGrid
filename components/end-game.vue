@@ -21,17 +21,17 @@
         <div v-if="leftLogos.length > 0" :class="$style['label-container']">
             <img :src="leftLogos[0][0]" :class="$style.label" />
         </div>
-        <div v-if="topAnswersGrid.length > 0" :class="$style.imageContainer">
+        <div v-if="topAnswersGrid.length > 0 && topAnswersGrid[0].length > 0" :class="$style.imageContainer">
           <div :class="$style.rarityScore">{{ topAnswersGrid[0][0].rarity_score }}%</div>
           <img :src="topAnswersGrid[0][0].picture" :class="$style['player-image']" :alt="topAnswersGrid[0][0].name + ' photo'">
           <div :class="$style.playerName">{{ topAnswersGrid[0][0].name }}</div>
         </div>
-        <div v-if="topAnswersGrid.length > 0" :class="$style.imageContainer">
+        <div v-if="topAnswersGrid.length > 0 && topAnswersGrid[0] && topAnswersGrid[0].length > 1" :class="$style.imageContainer">
             <div :class="$style.rarityScore">{{ topAnswersGrid[0][1].rarity_score }}%</div>
             <img :src="topAnswersGrid[0][1].picture" :class="$style['player-image']" :alt="topAnswersGrid[0][1].name + ' photo'">
             <div :class="$style.playerName">{{ topAnswersGrid[0][1].name }}</div>
         </div>
-        <div v-if="topAnswersGrid.length > 0" :class="$style.imageContainer">
+        <div v-if="topAnswersGrid.length > 0 && topAnswersGrid[0] && topAnswersGrid[0].length > 2" :class="$style.imageContainer">
           <div :class="$style.rarityScore">{{ topAnswersGrid[0][2].rarity_score }}%</div>
           <img :src="topAnswersGrid[0][2].picture" :class="$style['player-image']" :alt="topAnswersGrid[0][2].name + ' photo'">
           <div :class="$style.playerName">{{ topAnswersGrid[0][2].name }}</div>
@@ -45,12 +45,12 @@
           <img :src="topAnswersGrid[1][0].picture" :class="$style['player-image']" :alt="topAnswersGrid[1][0].name + ' photo'">
           <div :class="$style.playerName">{{ topAnswersGrid[1][0].name }}</div>
         </div>
-        <div v-if="topAnswersGrid.length > 0" :class="$style.imageContainer">
+        <div v-if="topAnswersGrid.length > 0 && topAnswersGrid[1] && topAnswersGrid[1].length > 1" :class="$style.imageContainer">
           <div :class="$style.rarityScore">{{ topAnswersGrid[1][1].rarity_score }}%</div>
           <img :src="topAnswersGrid[1][1].picture" :class="$style['player-image']" :alt="topAnswersGrid[1][1].name + ' photo'">
           <div :class="$style.playerName">{{ topAnswersGrid[1][1].name }}</div>
         </div>
-        <div v-if="topAnswersGrid.length > 0" :class="$style.imageContainer">
+        <div v-if="topAnswersGrid.length > 0 && topAnswersGrid[1] && topAnswersGrid[1].length > 2" :class="$style.imageContainer">
           <div :class="$style.rarityScore">{{ topAnswersGrid[1][2].rarity_score }}%</div>
           <img :src="topAnswersGrid[1][2].picture" :class="$style['player-image']" :alt="topAnswersGrid[1][2].name + ' photo'">
           <div :class="$style.playerName">{{ topAnswersGrid[1][2].name }}</div>
@@ -64,12 +64,12 @@
           <img :src="topAnswersGrid[2][0].picture" :class="$style['player-image']" :alt="topAnswersGrid[2][0].name + ' photo'">
           <div :class="$style.playerName">{{ topAnswersGrid[2][0].name }}</div>
         </div>
-        <div v-if="topAnswersGrid.length > 0" :class="$style.imageContainer">
+        <div v-if="topAnswersGrid.length > 0 && topAnswersGrid[2] && topAnswersGrid[2].length > 1" :class="$style.imageContainer">
           <div :class="$style.rarityScore">{{ topAnswersGrid[2][1].rarity_score }}%</div>
           <img :src="topAnswersGrid[2][1].picture" :class="$style['player-image']" :alt="topAnswersGrid[2][1].name + ' photo'">
           <div :class="$style.playerName">{{ topAnswersGrid[2][1].name }}</div>
       </div>
-        <div v-if="topAnswersGrid.length > 0" :class="$style.imageContainer">
+        <div v-if="topAnswersGrid.length > 0 && topAnswersGrid[2] && topAnswersGrid[2].length > 2" :class="$style.imageContainer">
           <div :class="$style.rarityScore">{{ topAnswersGrid[2][2].rarity_score }}%</div>
           <img :src="topAnswersGrid[2][2].picture" :class="$style['player-image']" :alt="topAnswersGrid[2][2].name + ' photo'">
           <div :class="$style.playerName">{{ topAnswersGrid[2][2].name }}</div>
@@ -239,7 +239,10 @@ export default {
     },
     goToMenu () {
       this.gameOver = false
-    }
+    },
+    getPlayer(row, col) {
+      return (this.topAnswersGrid[row] && this.topAnswersGrid[row][col]) || null;
+    },
   }
 }
 </script>
